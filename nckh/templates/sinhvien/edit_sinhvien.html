@@ -1,16 +1,59 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{title}}</h1>
-    <form method="post">
-        {% csrf_token %} {{form.as_p}}
-        <button type="submit">Save</button>
-    </form>
-    <a href="{% url "sinhvien_list" %}">Back</a>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link
+      rel="stylesheet"
+      href="{% static 'css/sinhvien/edit_sinhvien.css' %}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>{{ title }}</h1>
+      </header>
+      <main>
+        <form method="post" class="form-container">
+          {% csrf_token %}
+
+          <!-- Render từng trường của form -->
+          <div class="form-group">
+            <label for="id_msv">Mã sinh viên</label>
+            {{ form.msv }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_name">Tên</label>
+            {{ form.name }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_slug">Slug</label>
+            {{ form.slug }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_gender">Giới tính</label>
+            {{ form.gender }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_age">Tuổi</label>
+            {{ form.age }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_grade">Khóa học</label>
+            {{ form.grade }}
+          </div>
+
+          <button type="submit" class="btn-submit">Lưu</button>
+        </form>
+        <a href="{% url 'sinhvien_list' %}" class="btn-back">Quay lại</a>
+      </main>
+    </div>
+  </body>
 </html>
