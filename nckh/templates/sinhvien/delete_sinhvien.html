@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link
+      rel="stylesheet"
+      href="{% static 'css/sinhvien/delete_sinhvien.css' %}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>{{ title }}</h1>
+      </header>
+      <main>
+        <p class="confirmation-text">
+          Are you sure you want to delete this sinh vien?
+        </p>
+        <form method="post" class="delete-form">
+          {% csrf_token %}
+
+          <!-- Render từng trường -->
+          <div class="form-group">
+            <label for="id_msv">Mã Sinh Viên:</label>
+            {{ form.msv }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_name">Họ Tên:</label>
+            {{ form.name }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_slug">Slug:</label>
+            {{ form.slug }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_gender">Giới Tính:</label>
+            {{ form.gender }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_age">Tuổi:</label>
+            {{ form.age }}
+          </div>
+
+          <div class="form-group">
+            <label for="id_grade">Lớp:</label>
+            {{ form.grade }}
+          </div>
+
+          <button type="submit" class="btn-confirm">Xác Nhận</button>
+        </form>
+        <a href="{% url 'sinhvien_list' %}" class="btn-back">Quay lại</a>
+      </main>
+    </div>
+  </body>
+</html>

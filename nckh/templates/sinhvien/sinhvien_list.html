@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link
+      rel="stylesheet"
+      href="{% static 'css/sinhvien/sinhvien_list.css' %}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>{{ title }}</h1>
+        <a href="{% url 'add_sinhvien' %}" class="btn btn-add"
+          >+ Thêm sinh viên</a
+        >
+      </header>
+
+      <main class="content">
+        <ul class="student-list">
+          {% if sinhviens %} {% for sinhvien in sinhviens %}
+          <li class="student-item">
+            <div class="student-info">
+              <span><strong>Mã SV:</strong> {{ sinhvien.msv }}</span>
+              <span><strong>Tên:</strong> {{ sinhvien.name }}</span>
+            </div>
+            <div class="actions">
+              <a
+                href="{% url 'edit_sinhvien' sinhvien.msv %}"
+                class="btn btn-edit"
+                >Sửa</a
+              >
+              <a
+                href="{% url 'delete_sinhvien' sinhvien.msv %}"
+                class="btn btn-delete"
+                >Xóa</a
+              >
+            </div>
+          </li>
+          {% endfor %} {% else %}
+          <p class="no-data">Chưa có sinh viên nào được thêm!</p>
+          {% endif %}
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

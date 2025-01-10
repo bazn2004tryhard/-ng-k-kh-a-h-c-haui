@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link
+      rel="stylesheet"
+      href="{% static 'css/sinhvien/add_sinhvien.css' %}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>{{ title }}</h1>
+      </header>
+
+      <main>
+        <section class="form-section">
+          <form method="post" class="form-box">
+            {% csrf_token %}
+            <div class="form-content">{{ form.as_p }}</div>
+            <button type="submit" class="btn btn-save">Lưu</button>
+          </form>
+          <a href="{% url 'sinhvien_list' %}" class="btn btn-back">Quay lại</a>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
